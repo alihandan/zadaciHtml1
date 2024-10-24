@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills - CV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #skillsArea {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            min-height: 100px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        #skillsArea.dragover {
+            background-color: #f0f0f0;
+        }
+        .draggable {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #e0e0e0;
+            cursor: move;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Skills Section</h1>
+
+    <div id="skillsArea">Drop your skills here</div>
+
+    <h2>Available Skills:</h2>
+    <p class="draggable" draggable="true">HTML</p>
+    <p class="draggable" draggable="true">CSS</p>
+    <p class="draggable" draggable="true">JavaScript</p>
+    <p class="draggable" draggable="true">React</p>
+
+    <script>
+        const skillsArea = document.getElementById('skillsArea');
+
+        skillsArea.addEventListener('dragover', function(event) {
+            event.preventDefault();
+            skillsArea.classList.add('dragover');
+        });
+
+        skillsArea.addEventListener('dragleave', function() {
+            skillsArea.classList.remove('dragover');
+        });
+
+        skillsArea.addEventListener('drop', function(event) {
+            event.preventDefault();
+            skillsArea.classList.remove('dragover');
+
+            const skill = document.createElement('p');
+            skill.textContent = event.dataTransfer.getData('text/plain');
+            skill.className = 'draggable';
+            skill.draggable = true;
+
+            skillsArea.appendChild(skill);
+        });
+
+
+        const draggableSkills = document.querySelectorAll('.draggable');
+        draggableSkills.forEach(skill => {
+            skill.addEventListener('dragstart', function(event) {
+                event.dataTransfer.setData('text/plain', skill.textContent);
+            });
+        });
+    </script>
+
+</body>
+</html>

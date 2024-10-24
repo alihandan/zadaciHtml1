@@ -1,0 +1,70 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Handan</title>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                document.getElementById("locationDisplay").innerText = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            document.getElementById("locationDisplay").innerText = `Latitude: ${latitude}, Longitude: ${longitude}`;
+        }
+
+        function showError(error) {
+            let errorMessage;
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMessage = "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMessage = "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    errorMessage = "The request to get user location timed out.";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    errorMessage = "An unknown error occurred.";
+                    break;
+            }
+            document.getElementById("locationDisplay").innerText = errorMessage;
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>Ali Handan</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+        </ul>
+    </nav>
+
+        <section id="location">
+            <h2>Get My Location</h2>
+            <button onclick="getLocation()">Get My Location</button>
+            <p id="locationDisplay" class="location-info"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Contact: alihandan@gmail.com</p>
+    
+        <p>© 2024 Ali Handan</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>User Information Form</h1>
+    <form id="userInfoForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" required><br><br>
+        
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" required><br><br>
+        
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle"><br><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="message" class="message"></p>
+
+    <script>
+        document.getElementById('userInfoForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const jobTitle = document.getElementById('jobTitle').value;
+
+            localStorage.setItem('firstName', firstName);
+            localStorage.setItem('lastName', lastName);
+
+            const message = `Hello, ${firstName} ${lastName}${jobTitle ? ', ' + jobTitle : ''}!`;
+            document.getElementById('message').innerText = message;
+
+            document.getElementById('userInfoForm').reset();
+        });
+    </script>
+
+</body>
+</html>

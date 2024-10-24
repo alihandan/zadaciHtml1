@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Handan</title>
+    <link rel="stylesheet" href="styles.css"> 
+<body>
+
+    <header>
+        <h1>Ali Handan</h1>
+    </header>
+
+    <img src="C:\Users\PC\Downloads\ali.jpg" alt="Your Name" width="150" height="150">
+    <hr>
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+        </ul>
+    </nav>
+    <hr>
+    <main>
+        <article id="experience">
+            <h2>Professional Experience</h2>
+            <p>
+My name is Ali Handan. Im experienced developer in C++.
+            </p>
+        </article>
+
+        <hr>
+        
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Im 20 year old.</p>
+        </section>
+        <hr>
+        <section id="skills">
+            <h2>Skills</h2>
+            <p>C++ developer, HTML CSSS, Python</p>
+        </section>
+    </main>
+<hr>
+    <section id="location">
+        <h2>Location</h2>
+        <button onclick="getLocation()">Get My Location</button>
+<p id="location"></p>
+
+<script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            document.getElementById("location").innerText = "Geolocation is not supported by this browser.";
+        }
+    }
+
+    function showPosition(position) {
+        document.getElementById("location").innerText = 
+            `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+    }
+
+    function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                document.getElementById("location").innerText = "User denied the request for Geolocation.";
+                break;
+            case error.POSITION_UNAVAILABLE:
+                document.getElementById("location").innerText = "Location information is unavailable.";
+                break;
+            case error.TIMEOUT:
+                document.getElementById("location").innerText = "The request to get user location timed out.";
+                break;
+            case error.UNKNOWN_ERROR:
+                document.getElementById("location").innerText = "An unknown error occurred.";
+                break;
+        }
+    }
+</script>
+    </section><hr>
+</main>
+    <footer>
+        <p>Contact: alihandan@gmail.com</p>
+        <p>© 2024 Ali Handan</p>
+    </footer>
+
+</body>
+</html>
